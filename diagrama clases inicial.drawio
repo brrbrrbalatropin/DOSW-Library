@@ -1,0 +1,322 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="29.5.1">
+  <diagram name="Página-1" id="jT6rRhgYmB_31pUL0Gsz">
+    <mxGraphModel dx="758" dy="370" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zone_blue" parent="1" style="swimlane;startSize=40;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=16;fontColor=#003366;verticalAlign=top;" value="core dominid" vertex="1">
+          <mxGeometry height="1200" width="1100" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Torneo" parent="zone_blue" style="swimlane;startSize=30;fillColor=#1e4d78;strokeColor=#1e4d78;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="Torneo" vertex="1">
+          <mxGeometry height="240" width="280" x="60" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Torneo_a" parent="Torneo" style="text;strokeColor=#1e4d78;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="- id: Long&#xa;- fechaInicio: LocalDate&#xa;- fechaFin: LocalDate&#xa;- cantidadEquipos: int&#xa;- costoPorEquipo: double&#xa;- reglamento: String&#xa;- state: TorneoState&#xa;- puntuacionStrategy: PuntuacionStrategy&#xa;- generacionStrategy: GeneracionLlavesStrategy&#xa;- eventPublisher: TorneoEventPublisher" vertex="1">
+          <mxGeometry height="140" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Torneo_m" parent="Torneo" style="text;strokeColor=#1e4d78;fillColor=#bdd7ee;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ iniciar(): void&#xa;+ finalizar(): void&#xa;+ cerrarInscripciones(): void&#xa;+ configurar(): void" vertex="1">
+          <mxGeometry height="70" width="280" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Equipo" parent="zone_blue" style="swimlane;startSize=30;fillColor=#1e4d78;strokeColor=#1e4d78;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="Equipo" vertex="1">
+          <mxGeometry height="220" width="280" x="820" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Equipo_a" parent="Equipo" style="text;strokeColor=#1e4d78;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="- id: Long&#xa;- nombre: String&#xa;- escudo: String&#xa;- colores: String" vertex="1">
+          <mxGeometry height="80" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Equipo_m" parent="Equipo" style="text;strokeColor=#1e4d78;fillColor=#bdd7ee;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ agregarJugador(): void&#xa;+ invitarJugador(): void&#xa;+ validarCupo(): boolean&#xa;+ estaHabilitado(): boolean" vertex="1">
+          <mxGeometry height="110" width="280" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Jugador" parent="zone_blue" style="swimlane;startSize=30;fillColor=#1e4d78;strokeColor=#1e4d78;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="Jugador" vertex="1">
+          <mxGeometry height="210" width="280" x="750" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="Jugador_a" parent="Jugador" style="text;strokeColor=#1e4d78;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="- id: Long&#xa;- nombre: String&#xa;- correo: String&#xa;- posicion: String&#xa;- dorsal: int&#xa;- disponible: boolean" vertex="1">
+          <mxGeometry height="110" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Jugador_m" parent="Jugador" style="text;strokeColor=#1e4d78;fillColor=#bdd7ee;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ aceptarInvitacion(): void&#xa;+ rechazarInvitacion(): void" vertex="1">
+          <mxGeometry height="70" width="280" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Partido" parent="zone_blue" style="swimlane;startSize=30;fillColor=#1e4d78;strokeColor=#1e4d78;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="Partido" vertex="1">
+          <mxGeometry height="220" width="280" x="330" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="Partido_a" parent="Partido" style="text;strokeColor=#1e4d78;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="- id: Long&#xa;- fecha: LocalDateTime&#xa;- cancha: String&#xa;- marcadorLocal: int&#xa;- marcadorVisitante: int&#xa;- state: PartidoState" vertex="1">
+          <mxGeometry height="110" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Partido_m" parent="Partido" style="text;strokeColor=#1e4d78;fillColor=#bdd7ee;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ registrarResultado(): void&#xa;+ registrarGoleador(): void&#xa;+ registrarTarjeta(): void" vertex="1">
+          <mxGeometry height="80" width="280" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Pago" parent="zone_blue" style="swimlane;startSize=30;fillColor=#1e4d78;strokeColor=#1e4d78;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="Pago" vertex="1">
+          <mxGeometry height="200" width="280" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="Pago_a" parent="Pago" style="text;strokeColor=#1e4d78;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="- id: Long&#xa;- comprobante: String&#xa;- fechaSubida: LocalDate&#xa;- state: PagoState" vertex="1">
+          <mxGeometry height="80" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Pago_m" parent="Pago" style="text;strokeColor=#1e4d78;fillColor=#bdd7ee;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ subirComprobante(): void&#xa;+ aprobar(): void&#xa;+ rechazar(): void" vertex="1">
+          <mxGeometry height="90" width="280" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Alineacion" parent="zone_blue" style="swimlane;startSize=30;fillColor=#1e4d78;strokeColor=#1e4d78;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="Alineacion" vertex="1">
+          <mxGeometry height="200" width="280" x="750" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="Alineacion_a" parent="Alineacion" style="text;strokeColor=#1e4d78;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="- id: Long&#xa;- formacion: String&#xa;- titulares: List&lt;Jugador&gt;&#xa;- reservas: List&lt;Jugador&gt;" vertex="1">
+          <mxGeometry height="80" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Alineacion_m" parent="Alineacion" style="text;strokeColor=#1e4d78;fillColor=#bdd7ee;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ definirTitulares(): void&#xa;+ definirReservas(): void&#xa;+ consultarAlineacionRival(): void" vertex="1">
+          <mxGeometry height="90" width="280" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_torneo_equipo" edge="1" parent="zone_blue" source="Torneo" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=1;endArrow=none;endFill=0;strokeColor=#1e4d78;strokeWidth=2;" target="Equipo" value="1..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_torneo_partido" edge="1" parent="zone_blue" source="Torneo" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=1;endArrow=none;endFill=0;strokeColor=#1e4d78;strokeWidth=2;" target="Partido" value="1..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_equipo_jugador" edge="1" parent="zone_blue" source="Equipo" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=1;endArrow=none;endFill=0;strokeColor=#1e4d78;strokeWidth=2;" target="Jugador" value="1..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_equipo_pago" edge="1" parent="zone_blue" source="Equipo" style="edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=1;endArrow=none;endFill=0;strokeColor=#1e4d78;strokeWidth=2;" target="Pago" value="1..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_equipo_alineacion" edge="1" parent="zone_blue" source="Equipo" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=1;endArrow=none;endFill=0;strokeColor=#1e4d78;strokeWidth=2;" target="Alineacion" value="1..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_partido_equipo" edge="1" parent="zone_blue" source="Partido" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=none;strokeColor=#1e4d78;strokeWidth=2;dashed=0;" target="Equipo" value="local / visitante">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_green" parent="1" style="swimlane;startSize=40;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=16;fontColor=#1a4a1a;" value="patron satte" vertex="1">
+          <mxGeometry height="1200" width="1100" x="1220" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TorneoState" parent="zone_green" style="swimlane;startSize=40;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=3;fontSize=13;" value="«interface»&#xa;TorneoState" vertex="1">
+          <mxGeometry height="130" width="260" x="60" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TorneoState_m" parent="TorneoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ iniciar(): void&#xa;+ cerrarInscripciones(): void&#xa;+ finalizar(): void" vertex="1">
+          <mxGeometry height="90" width="260" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BorradorState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="BorradorState" vertex="1">
+          <mxGeometry height="60" width="220" x="400" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BorradorState_b" parent="BorradorState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements TorneoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ActivoState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="ActivoState" vertex="1">
+          <mxGeometry height="60" width="220" x="700" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ActivoState_b" parent="ActivoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements TorneoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EnProgresoState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="EnProgresoState" vertex="1">
+          <mxGeometry height="60" width="220" x="400" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="EnProgresoState_b" parent="EnProgresoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements TorneoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FinalizadoState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="FinalizadoState" vertex="1">
+          <mxGeometry height="60" width="220" x="700" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="FinalizadoState_b" parent="FinalizadoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements TorneoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PagoState" parent="zone_green" style="swimlane;startSize=40;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=3;fontSize=13;" value="«interface»&#xa;PagoState" vertex="1">
+          <mxGeometry height="110" width="260" x="60" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="PagoState_m" parent="PagoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ avanzar(): void&#xa;+ rechazar(): void" vertex="1">
+          <mxGeometry height="70" width="260" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PendienteState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="PendienteState" vertex="1">
+          <mxGeometry height="60" width="220" x="400" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="PendienteState_b" parent="PendienteState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PagoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EnRevisionState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="EnRevisionState" vertex="1">
+          <mxGeometry height="60" width="220" x="700" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="EnRevisionState_b" parent="EnRevisionState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PagoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AprobadoState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="AprobadoState" vertex="1">
+          <mxGeometry height="60" width="220" x="400" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="AprobadoState_b" parent="AprobadoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PagoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RechazadoState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="RechazadoState" vertex="1">
+          <mxGeometry height="60" width="220" x="700" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="RechazadoState_b" parent="RechazadoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PagoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PartidoState" parent="zone_green" style="swimlane;startSize=40;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=3;fontSize=13;" value="«interface»&#xa;PartidoState" vertex="1">
+          <mxGeometry height="130" width="260" x="60" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="PartidoState_m" parent="PartidoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ iniciar(): void&#xa;+ registrarResultado(): void&#xa;+ finalizar(): void" vertex="1">
+          <mxGeometry height="90" width="260" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ProgramadoState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="ProgramadoState" vertex="1">
+          <mxGeometry height="60" width="220" x="400" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="ProgramadoState_b" parent="ProgramadoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PartidoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EnCursoState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="EnCursoState" vertex="1">
+          <mxGeometry height="60" width="220" x="700" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="EnCursoState_b" parent="EnCursoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PartidoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FinalizadoPartidoState" parent="zone_green" style="swimlane;startSize=30;fillColor=#2d6a2d;strokeColor=#2d6a2d;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="FinalizadoPartidoState" vertex="1">
+          <mxGeometry height="60" width="220" x="400" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="FinalizadoPartidoState_b" parent="FinalizadoPartidoState" style="text;strokeColor=#2d6a2d;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PartidoState" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_borrador_torneostate" edge="1" parent="zone_green" source="BorradorState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="TorneoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_activo_torneostate" edge="1" parent="zone_green" source="ActivoState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="TorneoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_enprogreso_torneostate" edge="1" parent="zone_green" source="EnProgresoState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="TorneoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_finalizado_torneostate" edge="1" parent="zone_green" source="FinalizadoState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="TorneoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_pendiente_pagostate" edge="1" parent="zone_green" source="PendienteState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="PagoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_enrevision_pagostate" edge="1" parent="zone_green" source="EnRevisionState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="PagoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_aprobado_pagostate" edge="1" parent="zone_green" source="AprobadoState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="PagoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_rechazado_pagostate" edge="1" parent="zone_green" source="RechazadoState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="PagoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_programado_partidostate" edge="1" parent="zone_green" source="ProgramadoState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="PartidoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_encurso_partidostate" edge="1" parent="zone_green" source="EnCursoState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="PartidoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_finalizadopartido_partidostate" edge="1" parent="zone_green" source="FinalizadoPartidoState" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#2d6a2d;strokeWidth=2;" target="PartidoState">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_orange" parent="1" style="swimlane;startSize=40;fillColor=#ffe6cc;strokeColor=#d6b656;fontStyle=1;fontSize=16;fontColor=#7d4a00;" value="patron strategy" vertex="1">
+          <mxGeometry height="700" width="1100" x="40" y="1320" as="geometry" />
+        </mxCell>
+        <mxCell id="PuntuacionStrategy" parent="zone_orange" style="swimlane;startSize=40;fillColor=#b85c00;strokeColor=#b85c00;fontColor=#ffffff;fontStyle=3;fontSize=13;" value="«interface»&#xa;PuntuacionStrategy" vertex="1">
+          <mxGeometry height="100" width="280" x="60" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PuntuacionStrategy_m" parent="PuntuacionStrategy" style="text;strokeColor=#b85c00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ calcularPuntos(partido: Partido): int" vertex="1">
+          <mxGeometry height="60" width="280" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PuntuacionEstandar" parent="zone_orange" style="swimlane;startSize=30;fillColor=#b85c00;strokeColor=#b85c00;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="PuntuacionEstandarStrategy" vertex="1">
+          <mxGeometry height="60" width="260" x="440" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PuntuacionEstandar_b" parent="PuntuacionEstandar" style="text;strokeColor=#b85c00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PuntuacionStrategy" vertex="1">
+          <mxGeometry height="30" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PuntuacionPersonalizada" parent="zone_orange" style="swimlane;startSize=30;fillColor=#b85c00;strokeColor=#b85c00;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="PuntuacionPersonalizadaStrategy" vertex="1">
+          <mxGeometry height="60" width="260" x="440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="PuntuacionPersonalizada_b" parent="PuntuacionPersonalizada" style="text;strokeColor=#b85c00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements PuntuacionStrategy" vertex="1">
+          <mxGeometry height="30" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GeneracionLlavesStrategy" parent="zone_orange" style="swimlane;startSize=40;fillColor=#b85c00;strokeColor=#b85c00;fontColor=#ffffff;fontStyle=3;fontSize=13;" value="«interface»&#xa;GeneracionLlavesStrategy" vertex="1">
+          <mxGeometry height="100" width="280" x="60" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="GeneracionLlavesStrategy_m" parent="GeneracionLlavesStrategy" style="text;strokeColor=#b85c00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ generarLlaves(equipos: List): List&lt;Partido&gt;" vertex="1">
+          <mxGeometry height="60" width="280" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="GeneracionAleatoria" parent="zone_orange" style="swimlane;startSize=30;fillColor=#b85c00;strokeColor=#b85c00;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="GeneracionAleatoriaStrategy" vertex="1">
+          <mxGeometry height="60" width="260" x="440" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="GeneracionAleatoria_b" parent="GeneracionAleatoria" style="text;strokeColor=#b85c00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements GeneracionLlavesStrategy" vertex="1">
+          <mxGeometry height="30" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GeneracionPorTabla" parent="zone_orange" style="swimlane;startSize=30;fillColor=#b85c00;strokeColor=#b85c00;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="GeneracionPorTablaStrategy" vertex="1">
+          <mxGeometry height="60" width="260" x="440" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="GeneracionPorTabla_b" parent="GeneracionPorTabla" style="text;strokeColor=#b85c00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements GeneracionLlavesStrategy" vertex="1">
+          <mxGeometry height="30" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_pestandar_ps" edge="1" parent="zone_orange" source="PuntuacionEstandar" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#b85c00;strokeWidth=2;" target="PuntuacionStrategy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_ppersonalizada_ps" edge="1" parent="zone_orange" source="PuntuacionPersonalizada" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#b85c00;strokeWidth=2;" target="PuntuacionStrategy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_galeatoria_gls" edge="1" parent="zone_orange" source="GeneracionAleatoria" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#b85c00;strokeWidth=2;" target="GeneracionLlavesStrategy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_gtabla_gls" edge="1" parent="zone_orange" source="GeneracionPorTabla" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#b85c00;strokeWidth=2;" target="GeneracionLlavesStrategy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_yellow" parent="1" style="swimlane;startSize=40;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=16;fontColor=#7d6608;" value="patron observer" vertex="1">
+          <mxGeometry height="700" width="1100" x="1220" y="1320" as="geometry" />
+        </mxCell>
+        <mxCell id="TorneoObserver" parent="zone_yellow" style="swimlane;startSize=40;fillColor=#b8860b;strokeColor=#b8860b;fontColor=#ffffff;fontStyle=3;fontSize=13;" value="«interface»&#xa;TorneoObserver" vertex="1">
+          <mxGeometry height="100" width="260" x="60" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TorneoObserver_m" parent="TorneoObserver" style="text;strokeColor=#b8860b;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ actualizar(evento: String): void" vertex="1">
+          <mxGeometry height="60" width="260" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TablaObserver" parent="zone_yellow" style="swimlane;startSize=30;fillColor=#b8860b;strokeColor=#b8860b;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="TablaObserver" vertex="1">
+          <mxGeometry height="60" width="220" x="420" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TablaObserver_b" parent="TablaObserver" style="text;strokeColor=#b8860b;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements TorneoObserver" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NotificacionObserver" parent="zone_yellow" style="swimlane;startSize=30;fillColor=#b8860b;strokeColor=#b8860b;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="NotificacionObserver" vertex="1">
+          <mxGeometry height="60" width="220" x="420" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="NotificacionObserver_b" parent="NotificacionObserver" style="text;strokeColor=#b8860b;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements TorneoObserver" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SancionObserver" parent="zone_yellow" style="swimlane;startSize=30;fillColor=#b8860b;strokeColor=#b8860b;fontColor=#ffffff;fontStyle=1;fontSize=12;" value="SancionObserver" vertex="1">
+          <mxGeometry height="60" width="220" x="420" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="SancionObserver_b" parent="SancionObserver" style="text;strokeColor=#b8860b;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="implements TorneoObserver" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TorneoEventPublisher" parent="zone_yellow" style="swimlane;startSize=30;fillColor=#b8860b;strokeColor=#b8860b;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="TorneoEventPublisher" vertex="1">
+          <mxGeometry height="130" width="280" x="60" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="TorneoEventPublisher_a" parent="TorneoEventPublisher" style="text;strokeColor=#b8860b;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="- observers: List&lt;TorneoObserver&gt;" vertex="1">
+          <mxGeometry height="40" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TorneoEventPublisher_m" parent="TorneoEventPublisher" style="text;strokeColor=#b8860b;fillColor=#fff9e6;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" value="+ suscribir(o: TorneoObserver): void&#xa;+ notificar(evento: String): void" vertex="1">
+          <mxGeometry height="60" width="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_tabla_observer" edge="1" parent="zone_yellow" source="TablaObserver" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#b8860b;strokeWidth=2;" target="TorneoObserver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_notificacion_observer" edge="1" parent="zone_yellow" source="NotificacionObserver" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#b8860b;strokeWidth=2;" target="TorneoObserver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_sancion_observer" edge="1" parent="zone_yellow" source="SancionObserver" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;startArrow=none;strokeColor=#b8860b;strokeWidth=2;" target="TorneoObserver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_publisher_observer" edge="1" parent="zone_yellow" source="TorneoEventPublisher" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=none;strokeColor=#b8860b;strokeWidth=2;dashed=0;" target="TorneoObserver" value="1..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cross_torneo_torneostate" edge="1" parent="1" source="Torneo" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=none;strokeColor=#555555;strokeWidth=2;dashed=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;" target="TorneoState" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cross_pago_pagostate" edge="1" parent="1" source="Pago" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=none;strokeColor=#555555;strokeWidth=2;dashed=1;" target="PagoState" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cross_partido_partidostate" edge="1" parent="1" source="Partido" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=none;strokeColor=#555555;strokeWidth=2;dashed=1;" target="PartidoState" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cross_torneo_puntuacion" edge="1" parent="1" source="Torneo" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=none;strokeColor=#555555;strokeWidth=2;dashed=1;exitX=0.3;exitY=1;exitDx=0;exitDy=0;" target="PuntuacionStrategy" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cross_torneo_generacion" edge="1" parent="1" source="Torneo" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=none;strokeColor=#555555;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="GeneracionLlavesStrategy" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cross_torneo_publisher" edge="1" parent="1" source="Torneo" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=ERzeroToOne;startFill=0;strokeColor=#555555;strokeWidth=2;dashed=1;exitX=0.7;exitY=1;exitDx=0;exitDy=0;" target="TorneoEventPublisher" value="agregation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
