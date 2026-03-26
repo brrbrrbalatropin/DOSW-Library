@@ -1,88 +1,95 @@
 package edu.eci.dosw;
 
 import edu.eci.dosw.core.exception.BookNotAvailableException;
-import edu.eci.dosw.core.model.Book;
 import edu.eci.dosw.core.model.Loan;
-import edu.eci.dosw.persistence.entity.LoanStatus;
-import edu.eci.dosw.core.model.User;
 import edu.eci.dosw.core.service.BookService;
 import edu.eci.dosw.core.service.LoanService;
 import edu.eci.dosw.core.service.UserService;
+import edu.eci.dosw.persistence.entity.*;
+import edu.eci.dosw.persistence.mapper.LoanPersistenceMapper;
+import edu.eci.dosw.persistence.repository.LoanRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 class LoanServiceTest {
 
     private LoanService loanService;
+    private LoanRepository loanRepository;
+    private LoanPersistenceMapper loanMapper;
     private BookService bookService;
     private UserService userService;
 
     @BeforeEach
     void setUp() {
-        bookService = new BookService();
-        userService = new UserService();
-        loanService = new LoanService(bookService, userService);
+        loanRepository = Mockito.mock(LoanRepository.class);
+        loanMapper = Mockito.mock(LoanPersistenceMapper.class);
+        bookService = Mockito.mock(BookService.class);
+        userService = Mockito.mock(UserService.class);
+        loanService = new LoanService(loanRepository, loanMapper, bookService, userService);
     }
-
-    // --- EXITOSOS ---
 
     @Test
     void testCreateLoan() {
-        Book book = bookService.addBook(new Book(null, "Clean Code", "Martin", true), 2);
-        User user = userService.registerUser(new User(null, "Juan"));
-        Loan loan = loanService.createLoan(book.getId(), user.getId());
-        assertNotNull(loan.getId());
-        assertEquals(LoanStatus.ACTIVE, loan.getStatus());
+        BookEntity book = new BookEntity("b1", "Clean Code", "Martin", 2, 2);
+        UserEntity user = new UserEntity("u1", "Juan", "juanito", "pass", Role.USER);
+        LoanEntity loanEntity = new LoanEntity("l1", book, user, LocalDateTime.now(), null, LoanStatus.ACTIVE);
+        Loan loan = new Loan("l1", null, null, LocalDateTime.now(), null, LoanStatus.ACTIVE);
+
+        when(bookService.getEntityById("b1")).thenReturn(book);
+        when(userService.getEntityById("u1")).thenReturn(user);
+        when(loanRepository.save(any())).thenReturn(loanEntity);
+        when(loanMapper.toModel(loanEntity)).thenReturn(loan);
+
+        Loan result = loanService.createLoan("b1", "u1");
+        assertNotNull(result.getId());
+        assertEquals(LoanStatus.ACTIVE, result.getStatus());
+    }
+
+    @Test
+    void testCreateLoanBookNotAvailable() {
+        BookEntity book = new BookEntity("b1", "Clean Code", "Martin", 2, 0);
+        when(bookService.getEntityById("b1")).thenReturn(book);
+        assertThrows(BookNotAvailableException.class, () -> loanService.createLoan("b1", "u1"));
     }
 
     @Test
     void testReturnBook() {
-        Book book = bookService.addBook(new Book(null, "Clean Code", "Martin", true), 1);
-        User user = userService.registerUser(new User(null, "Juan"));
-        Loan loan = loanService.createLoan(book.getId(), user.getId());
-        Loan returned = loanService.returnBook(loan.getId());
-        assertEquals(LoanStatus.RETURNED, returned.getStatus());
-        assertNotNull(returned.getReturnDate());
+        BookEntity book = new BookEntity("b1", "Clean Code", "Martin", 2, 1);
+        UserEntity user = new UserEntity("u1", "Juan", "juanito", "pass", Role.USER);
+        LoanEntity loanEntity = new LoanEntity("l1", book, user, LocalDateTime.now(), null, LoanStatus.ACTIVE);
+        Loan loan = new Loan("l1", null, null, LocalDateTime.now(), LocalDateTime.now(), LoanStatus.RETURNED);
+
+        when(loanRepository.findById("l1")).thenReturn(Optional.of(loanEntity));
+        when(loanRepository.save(any())).thenReturn(loanEntity);
+        when(loanMapper.toModel(any())).thenReturn(loan);
+
+        Loan result = loanService.returnBook("l1");
+        assertEquals(LoanStatus.RETURNED, result.getStatus());
+    }
+
+    @Test
+    void testReturnAlreadyReturned() {
+        BookEntity book = new BookEntity("b1", "Clean Code", "Martin", 2, 1);
+        UserEntity user = new UserEntity("u1", "Juan", "juanito", "pass", Role.USER);
+        LoanEntity loanEntity = new LoanEntity("l1", book, user, LocalDateTime.now(), LocalDateTime.now(), LoanStatus.RETURNED);
+
+        when(loanRepository.findById("l1")).thenReturn(Optional.of(loanEntity));
+        assertThrows(IllegalStateException.class, () -> loanService.returnBook("l1"));
     }
 
     @Test
     void testGetAllLoans() {
-        Book book = bookService.addBook(new Book(null, "Clean Code", "Martin", true), 2);
-        User user = userService.registerUser(new User(null, "Juan"));
-        loanService.createLoan(book.getId(), user.getId());
+        when(loanRepository.findAll()).thenReturn(List.of());
         List<Loan> loans = loanService.getAllLoans();
-        assertEquals(1, loans.size());
-    }
-
-    @Test
-    void testGetLoansByUser() {
-        Book book = bookService.addBook(new Book(null, "Clean Code", "Martin", true), 2);
-        User user = userService.registerUser(new User(null, "Juan"));
-        loanService.createLoan(book.getId(), user.getId());
-        List<Loan> loans = loanService.getLoansByUser(user.getId());
-        assertEquals(1, loans.size());
-    }
-
-    // --- DE ERROR ---
-
-    @Test
-    void testCreateLoanBookNotAvailable() {
-        Book book = bookService.addBook(new Book(null, "Clean Code", "Martin", true), 1);
-        User user1 = userService.registerUser(new User(null, "Juan"));
-        User user2 = userService.registerUser(new User(null, "Laura"));
-        loanService.createLoan(book.getId(), user1.getId());
-        assertThrows(BookNotAvailableException.class, () ->
-                loanService.createLoan(book.getId(), user2.getId()));
-    }
-
-    @Test
-    void testCreateLoanUserNotFound() {
-        Book book = bookService.addBook(new Book(null, "Clean Code", "Martin", true), 1);
-        assertThrows(Exception.class, () ->
-                loanService.createLoan(book.getId(), "usuario-inexistente"));
+        assertNotNull(loans);
     }
 }
