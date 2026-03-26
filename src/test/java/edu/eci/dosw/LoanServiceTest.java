@@ -3,7 +3,7 @@ package edu.eci.dosw;
 import edu.eci.dosw.core.exception.BookNotAvailableException;
 import edu.eci.dosw.core.model.Book;
 import edu.eci.dosw.core.model.Loan;
-import edu.eci.dosw.core.model.LoanStatus;
+import edu.eci.dosw.persistence.entity.LoanStatus;
 import edu.eci.dosw.core.model.User;
 import edu.eci.dosw.core.service.BookService;
 import edu.eci.dosw.core.service.LoanService;
