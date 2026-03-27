@@ -10,6 +10,7 @@ import edu.eci.dosw.persistence.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,8 @@ class UserServiceTest {
     void setUp() {
         userRepository = Mockito.mock(UserRepository.class);
         userMapper = Mockito.mock(UserPersistenceMapper.class);
-        userService = new UserService(userRepository, userMapper);
+        PasswordEncoder passwordEncoder = Mockito.mock(PasswordEncoder.class);
+        userService = new UserService(userRepository, userMapper, passwordEncoder);
     }
 
     @Test
