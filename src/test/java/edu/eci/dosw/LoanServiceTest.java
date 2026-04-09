@@ -41,7 +41,7 @@ class LoanServiceTest {
     void testCreateLoan() {
         Book book = new Book("b1", "Clean Code", "Martin", 2, 2);
         User user = new User("u1", "Juan", "juanito", "pass", Role.USER);
-        Loan loan = new Loan("l1", book, user, LocalDateTime.now(), null, LoanStatus.ACTIVE);
+        Loan loan = new Loan("l1", book, user, LocalDateTime.now(), null, LoanStatus.ACTIVE, "b1", "u1");
 
         when(bookService.getEntityById("b1")).thenReturn(book);
         when(userService.getEntityById("u1")).thenReturn(user);
@@ -63,9 +63,8 @@ class LoanServiceTest {
     void testReturnBook() {
         Book book = new Book("b1", "Clean Code", "Martin", 2, 1);
         User user = new User("u1", "Juan", "juanito", "pass", Role.USER);
-        Loan loan = new Loan("l1", book, user, LocalDateTime.now(), null, LoanStatus.ACTIVE);
-        Loan returned = new Loan("l1", book, user, LocalDateTime.now(), LocalDateTime.now(), LoanStatus.RETURNED);
-
+        Loan loan = new Loan("l1", book, user, LocalDateTime.now(), null, LoanStatus.ACTIVE, "b1", "u1");
+        Loan returned = new Loan("l1", book, user, LocalDateTime.now(), LocalDateTime.now(), LoanStatus.RETURNED, "b1", "u1");
         when(loanRepository.findById("l1")).thenReturn(Optional.of(loan));
         when(loanRepository.save(any())).thenReturn(returned);
 
@@ -77,7 +76,7 @@ class LoanServiceTest {
     void testReturnAlreadyReturned() {
         Book book = new Book("b1", "Clean Code", "Martin", 2, 1);
         User user = new User("u1", "Juan", "juanito", "pass", Role.USER);
-        Loan loan = new Loan("l1", book, user, LocalDateTime.now(), LocalDateTime.now(), LoanStatus.RETURNED);
+        Loan loan = new Loan("l1", book, user, LocalDateTime.now(), null, LoanStatus.ACTIVE, "b1", "u1");
         when(loanRepository.findById("l1")).thenReturn(Optional.of(loan));
         assertThrows(IllegalStateException.class, () -> loanService.returnBook("l1"));
     }
