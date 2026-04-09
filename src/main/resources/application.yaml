@@ -1,13 +1,14 @@
 spring:
   application:
     name: DOSW-Library
-
   datasource:
     url: jdbc:postgresql://localhost:5432/dosw_library
     username: postgres
     password: "1234"
     driver-class-name: org.postgresql.Driver
-
+  data:
+    mongodb:
+      uri: mongodb+srv://dosw:dosw1234@cluster0.kofya5y.mongodb.net/dosw_library?retryWrites=true&w=majority&appName=Cluster0
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,9 +17,12 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  profiles:
+    active: mongo
 
 server:
   port: 8080
+
 springdoc:
   swagger-ui:
     disable-swagger-default-url: true
